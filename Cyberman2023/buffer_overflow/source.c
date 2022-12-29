@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 
     while (!(state.game_over || state.solved)){
         
-        print_game(&state);
+        print_matrix(&state);
         // printf("In while %d %d\n",state.game_over,state.solved);
         //prompt the user to guess the word 
         printf("Enter word: ");
@@ -71,10 +71,10 @@ int main(int argc, char *argv[])
             printf("%d",state.attempts);
         }
 
-        state.attempts +=1;
+        // state.attempts +=1;
             
         // copy the word into wordle board
-        strcpy(state.words[state.attempts],buffer);
+        strcpy(state.words[state.attempts++],buffer);
 
         // printf("In while %d %d",state.game_over,state.solved);
 

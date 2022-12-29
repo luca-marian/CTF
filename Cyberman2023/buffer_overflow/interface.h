@@ -30,26 +30,28 @@ char* to_upper(char *str){
     return (char*)str;
 }
 
-void print_matrix(){
+void print_matrix(game *state){
     // 5 columns and six rows
 
     for (int i=0;i<6;i++){
         printf(
         // "Enter your number in the box below\n"
-        "+----+----+----+----+----+\n"
-        "|    |    |    |    |    |\n"
+        "+------+------+------+------+------+\n"
+        "|  %c  |  %c  |  %c  |  %c  |  %c  |\n" ,
+        state->words[i][0],state->words[i][1],state->words[i][2],state->words[i][3],state->words[i][4]
         // "+----+----+----+----+----+\n"
     );
     }
     //  gotoxy(3, 3);
     // int u;
     // scanf("%d",&u);
-    printf("+----+----+----+----+----+\n");
+    printf("+------+------+------+------+------+\n");
 }
 
 void print_game(game *state){
 // 5 columns and six rows
-    print_matrix();
+    // print_matrix();
+
     
    
 }
