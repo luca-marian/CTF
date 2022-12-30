@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
         // prompt the user to guess the word
         printf("Enter word: ");
         if (!fgets(buffer, sizeof(buffer), stdin))
-            ;
+            return 1;
 
         // strip new line of entered text
         buffer[strcspn(buffer, "\n")] = 0;
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
         // ensure the guessed word is exactly 5 letters
         if (strlen(buffer) != WORD_LENGTH)
         {
-            printf("\n   /!\\ 'RED_COLOR'INVALID INPUT'RESET_COLOR' /!\\\n");
+            printf(RED "\n 'INVALID INPUT'!\n" RESET);
             continue;
         }
 
@@ -68,7 +68,8 @@ int main(int argc, char *argv[])
         if (!strcmp(to_upper(buffer), SOLUTION))
         {
             state.solved = 1;
-            printf("CONGRATS! You match the word!");
+            printf(MAG "CONGRATS! You match the word!\n" RESET);
+            printf(MAG "Program finished!\n" RESET);
         }
 
         // the game will end if this is the last allowed guess
@@ -82,11 +83,7 @@ int main(int argc, char *argv[])
 
         // copy the word into wordle board
         strcpy(state.words[state.attempts++], buffer);
-
-        // printf("In while %d %d",state.game_over,state.solved);
     }
 
-    // print_for_test(&state);
-    // print_game(&state);
     return 0;
 }
