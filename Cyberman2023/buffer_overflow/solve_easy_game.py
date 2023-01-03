@@ -15,7 +15,10 @@ p.sendline(b'CYBER\x00\x00\x00')
 print(p.recv().decode("utf-8"))
 
 
-p.sendline(b'\x00\x00\x00\x00\x00')
+p.sendline(b'CYBER\x00\x00')
+print(p.recv().decode("utf-8"))
+
+p.sendline(b'CYBER\x00\x20\0x30')
 print(p.recv().decode("utf-8"))
 
 

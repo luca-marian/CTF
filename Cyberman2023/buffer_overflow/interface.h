@@ -11,10 +11,10 @@
 #define CYN "\x1B[36m"
 #define WHT "\x1B[37m"
 #define RESET "\x1B[0m"
-char ENCRYPTION_BYTE = '\x29';
+char ENCRYPTION_BYTE = '\x3f';
 
 char SOLUTION_CLEAR[6] = "CYBER";
-char SOLUTION[6] = "\x6a\x70\x6b\x6c";
+char SOLUTION[6] = "\x7c\x66\x7d\x7a\x6d";
 
 typedef struct game
 {
@@ -26,8 +26,8 @@ typedef struct game
 
 void init_game(game *state)
 {
-    //     state->solved = 0;
-    //     state->game_over = 0;
+    state->solved = 0;
+    state->game_over = 0;
 }
 
 char *to_upper(char *str)

@@ -16,8 +16,19 @@
 
 void print_flag()
 {
-    printf("Congrats!");
-    printf("The flag is: {Very good job!}");
+    FILE *f;
+    char flag[50];
+    f = fopen("flag", "r");
+    if (f == NULL)
+    {
+        printf("File can't be opened. \n");
+    }
+    if (fscanf(f, "%s", flag))
+        printf("Flag is: %s\n", flag);
+    else
+    {
+        printf("Content can't be read \n");
+    }
 }
 
 void encrypt_word(char *word, int length)
@@ -55,6 +66,7 @@ int main(int argc, char *argv[])
 {
 
     // clear();
+    print_flag();
     game state = {};
     char buffer[16] = {};
 
@@ -80,14 +92,6 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        // the game will end if you entered word matches
-        // if (!strcmp(to_upper(buffer), SOLUTION))
-        // {
-        //     state.solved = 1;
-        //     printf(MAG "CONGRATS! You match the word!\n" RESET);
-        //     printf(MAG "Program finished!\n" RESET);
-        // }
-
         // the game will end if the entered word matches the encrypted wordle
         if (compare_encrypted(buffer, SOLUTION, WORD_LENGTH))
         {
@@ -107,6 +111,7 @@ int main(int argc, char *argv[])
         strcpy(state.words[state.attempts], buffer);
         encrypt_word(state.words[state.attempts], WORD_LENGTH);
         state.attempts++;
+        printf("TO SEE: %d\t%d\n", state.game_over, state.solved);
     }
 
     return 0;

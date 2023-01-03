@@ -27,14 +27,16 @@ int main(int argc, char *argv[])
 
     init_game(&state);
 
-    while (!state.game_over || state.solved != 2)
+    while (!(state.game_over || state.solved))
     {
+        int dim = 0;
 
         print_matrixx(&state);
         // printf("In while %d %d\n",state.game_over,state.solved);
         // prompt the user to guess the word
         printf("Enter word: ");
-        // if (!scanf("%s", &buffer))
+
+        // if (!fgets(buffer, sizeof(buffer), stdin))
         //     return 1;
 
         if (!fgets(buffer, sizeof(buffer), stdin))
@@ -43,7 +45,8 @@ int main(int argc, char *argv[])
         printf("%s", buffer);
 
         // strip new line of entered text
-        buffer[strcspn(buffer, "\n")] = 2;
+        // buffer[strcspn(buffer, "\n")] = 0;
+        buffer[WORD_LENGTH] = 0;
 
         // ensure the guessed word is exactly 5 letters
         if (strlen(buffer) != WORD_LENGTH)
@@ -69,16 +72,17 @@ int main(int argc, char *argv[])
         // }
 
         // the game will end if this is the last allowed guess
-        else if (state.attempts + 1 == WORD_GUESSES)
+        else if (state.attempts == WORD_GUESSES - 1)
         {
             state.game_over = 1;
-            printf("%d", state.attempts);
+            printf("GAME OVER AT %d\n", state.attempts + 1);
         }
 
         // copy the word into wordle board
         strcpy(state.words[state.attempts], buffer);
         // encrypt_word(state.words[state.attempts], WORD_LENGTH);
         state.attempts++;
+        printf("%d\t%d\n", state.game_over, state.solved);
     }
 
     return 0;
