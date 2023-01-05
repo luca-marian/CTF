@@ -1,21 +1,27 @@
 from pwn import *
 
-p = process("./game.exe")
+p = process("./game")
 
 # p.interactive()
 # sh.send(b"Hello"
+# print(p.recv().decode("utf-8"))
 
 for _ in range(5):
     print(p.recv().decode("utf-8"))
-    p.sendline("Hello\x00")
+    p.sendline(b"Hello")
 
 print(p.recv().decode("utf-8"))
 
-p.sendline(b'CYBER\x00\x00\x00')
+p.sendline(b'CYBER')
 
-for i in range(7):
-    p.sendline(b'\x29\x29\x29\x29\x29')
+for _ in range(10):
     print(p.recv().decode("utf-8"))
+    p.sendline(b'\x3f\x3f\x3f\x3f\x3f')
+    
+print(p.recv().decode("utf-8"))
+
+# p.sendline(b'\x3f\x3f\x3f\x3f\x3f')
+# print(p.recv().decode("utf-8"))
 
 # for _ in range(7):
 #     p.sendline(b'\x29\x29\x29\x29\x29')

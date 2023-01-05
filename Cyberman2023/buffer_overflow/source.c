@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
         print_matrix(&state);
         // printf("In while %d %d\n",state.game_over,state.solved);
         // prompt the user to guess the word
-        printf("Enter word: ");
+        printf("Enter word: \n");
         if (!fgets(buffer, sizeof(buffer), stdin))
             return 1;
 
